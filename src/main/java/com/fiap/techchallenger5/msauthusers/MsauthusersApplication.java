@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = "com.fiap.techchallenger5.msauthusers.domain.consumer")
+@EnableFeignClients
 public class MsauthusersApplication {
 
 	public static void main(String[] args) {
