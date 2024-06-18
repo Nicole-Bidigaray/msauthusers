@@ -2,7 +2,8 @@ package com.fiap.techchallenger5.msauthusers.controllers;
 
 import com.fiap.techchallenger5.msauthusers.domain.dto.AuthenticationDTO;
 import com.fiap.techchallenger5.msauthusers.domain.dto.LoginResponseDTO;
-import com.fiap.techchallenger5.msauthusers.domain.dto.RegisterDTO;
+import com.fiap.techchallenger5.msauthusers.domain.dto.RegisterAdminDTO;
+import com.fiap.techchallenger5.msauthusers.domain.dto.RegisterUserDTO;
 import com.fiap.techchallenger5.msauthusers.domain.entities.User;
 import com.fiap.techchallenger5.msauthusers.infra.security.TokenService;
 import com.fiap.techchallenger5.msauthusers.repositories.UserRepository;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +40,18 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid RegisterDTO data) {
+    @PostMapping("/register/admin")
+    public ResponseEntity<?> registerAdmin(@RequestBody @Valid RegisterAdminDTO data) {
+        if(this.userRepository.findByEmail(data.email()) != null)
+            return ResponseEntity.badRequest().build();
+
+        this.userRepository.save(data.toEntityWithBCryptEncoder());
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/register/user")
+    public ResponseEntity<?> registerUser(@RequestBody @Valid RegisterUserDTO data) {
         if(this.userRepository.findByEmail(data.email()) != null)
             return ResponseEntity.badRequest().build();
 
