@@ -7,15 +7,22 @@ import com.fiap.techchallenger5.msauthusers.domain.dto.RegisterUserDTO;
 import com.fiap.techchallenger5.msauthusers.domain.entities.User;
 import com.fiap.techchallenger5.msauthusers.infra.security.TokenService;
 import com.fiap.techchallenger5.msauthusers.repositories.UserRepository;
+
 import jakarta.validation.Valid;
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("auth")
@@ -34,12 +41,22 @@ public class AuthenticationController {
     public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        
-        var idUsuario = userRepository.findByEmail(data.email()).getId();
         var token = this.tokenService.generateToken((User) auth.getPrincipal());
 
-        return ResponseEntity.ok(new LoginResponseDTO(idUsuario, token));
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
+
+    @PostMapping("/currentUser")
+    public ResponseEntity<?> getUserByToken(@RequestParam("token") String token) {
+        final String emailUsuario = tokenService.validateToken(token);
+       
+        if(!StringUtils.hasText(emailUsuario)){
+            return ResponseEntity.badRequest().build();
+        }
+        
+        return ResponseEntity.ok(Map.of("idUsuario", userRepository.findByEmail(emailUsuario).getId()));
+    }
+    
 
     @PostMapping("/register/admin")
     public ResponseEntity<?> registerAdmin(@RequestBody @Valid RegisterAdminDTO data) {
