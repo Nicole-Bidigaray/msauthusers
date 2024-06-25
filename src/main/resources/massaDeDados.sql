@@ -1,5 +1,5 @@
-INSERT INTO users (id,name, email, password, role) VALUES ('80fa5572-1bf8-4f40-bd93-2e5f3eb0cff8','SYS LOGIN', 'login@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
-INSERT INTO users (id,name, email, password, role) VALUES ('346f031a-de01-4e3f-884e-b0eda108ec48','SYS PRODUTOS', 'produtos@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
-INSERT INTO users (id,name, email, password, role) VALUES ('f793e9b9-90c5-4483-a9fe-45de4f3db416','SYS PEDIDOS', 'pedidos@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
-INSERT INTO users (id,name, email, password, role) VALUES ('f497c8e9-a004-48c7-91a8-3910df3922b6','SYS PAGAMENTOS', 'pagamentos@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
-INSERT INTO users (id,name, email, password, role) VALUES ('b960a264-df32-484d-afc3-e76736ee8546','SYS CARRINHO', 'carrinho@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
+INSERT INTO users (id,name, email, password, role) VALUES (1,'SYS LOGIN', 'login@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
+INSERT INTO users (id,name, email, password, role) VALUES (2,'SYS PRODUTOS', 'produtos@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
+INSERT INTO users (id,name, email, password, role) VALUES (3,'SYS PEDIDOS', 'pedidos@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
+INSERT INTO users (id,name, email, password, role) VALUES (4,'SYS PAGAMENTOS', 'pagamentos@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
+INSERT INTO users (id,name, email, password, role) VALUES (5,'SYS CARRINHO', 'carrinho@example.com', '$2a$10$HsYrN.AtZ7hTkN7BVgIe4.4w9X3lwZtfdXGHwTvHlIZWBcY0bULAG', 'ADMIN');
