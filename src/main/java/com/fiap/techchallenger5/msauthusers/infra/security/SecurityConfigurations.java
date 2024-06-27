@@ -29,14 +29,14 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())    
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers(HttpMethod.POST, "/auth/currentUser").hasRole("ADMIN")
-                    .requestMatchers("/h2-console/**","/auth/login","/api-docs/**",  "/swagger-resources/**", "/configuration/**", "/webjars/**").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/register/user").permitAll()
+                    .requestMatchers("/h2-console/**","/auth/login","/api-docs/**",  "/swagger-resources/**", "/configuration/**", "/webjars/**").permitAll()
                     .requestMatchers(HttpMethod.GET,"/swagger-ui/**" ).permitAll()
                     .requestMatchers(HttpMethod.GET,"/produtos/**" ).authenticated()
                     .requestMatchers(HttpMethod.POST,"/produtos/**" ).hasRole("ADMIN")
                     .requestMatchers(HttpMethod.PUT,"/produtos/**" ).hasRole("ADMIN")
                     .requestMatchers(HttpMethod.POST, "/auth/register/admin").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/auth/currentUser").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.DELETE,"/produtos/**" ).hasRole("ADMIN")
                     .requestMatchers( "/pagamentos/**", "/pedidos/**" ).hasRole("ADMIN")
                     
