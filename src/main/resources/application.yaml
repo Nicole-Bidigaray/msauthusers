@@ -10,27 +10,22 @@ spring:
                 - id: ms-pedidos
                   uri: http://localhost:8084
                   predicates:
-                    - Path=/pedidos/**  
+                    - Path=/pedidos/**
 
                 - id: ms-pagamentos
                   uri: http://localhost:8081
                   predicates:
-                    - Path=/pagamentos/**  
+                    - Path=/pagamentos/**
 
                 - id: ms-produtos
                   uri: http://localhost:8082
                   predicates:
                     - Path=/produtos/**
-                
-                # - id: ms-xx
-                #   uri: http://localhost:8080
-                #   predicates:
-                #     - Path=/**
                     
                 - id: ms-carrinhos
                   uri: http://localhost:8083
                   predicates:
-                    - Path=/carrinhos/**                
+                    - Path=/carrinhos/**
 
 server:
     port: 8080
