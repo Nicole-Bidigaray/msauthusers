@@ -29,10 +29,9 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())    
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/h2-console/**","/auth/login","/api-docs/**",  "/swagger-resources/**", "/configuration/**", "/webjars/**").permitAll()
+                    .requestMatchers(uriLiberadas()).permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/currentUser").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.POST, "/auth/register/user").permitAll()
-                    .requestMatchers(HttpMethod.GET,"/swagger-ui/**" ).permitAll()
                     .requestMatchers(HttpMethod.GET,"/produtos/**" ).authenticated()
                     .requestMatchers(HttpMethod.POST,"/produtos/**" ).hasRole("ADMIN")
                     .requestMatchers(HttpMethod.PUT,"/produtos/**" ).hasRole("ADMIN")
@@ -48,6 +47,25 @@ public class SecurityConfigurations {
                 .headers(headers -> headers.frameOptions(FrameOptionsConfig::disable))    
                 // .httpBasic(Customizer.withDefaults())      
                 .build();
+    }
+
+    private String[] uriLiberadas(){
+        return new String[]{
+            "/swagger-mscarrinhos/**",
+            "/swagger-msprodutos/**",
+            "/swagger-mspedidos/**",
+            "/swagger-mspagamentos/**",
+            "/swagger-msauthusers/**",
+            "/h2-console/**",
+            "/auth/login",
+            "/api-docs/**",  
+            "/swagger-resources/**", 
+            "/configuration/**", 
+            "/webjars/**",
+            "/v3/**",
+            "/swagger-ui/**",
+            "v3/api-docs/**"
+        };
     }
 
     @Bean

@@ -12,11 +12,9 @@ api:
             secret: ${JWT_SECRET:my-secret-key}
 
 springdoc:
-    api-docs:
-        enabled: true
-        path: /api-docs
     swagger-ui:
-        path: /swagger-ui.html    
+        path: /swagger-${spring.application.name}
         defaultModelsExpandDepth: -1
+        disable-swagger-default-url: true
 
 
